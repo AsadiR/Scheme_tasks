@@ -1,0 +1,24 @@
+(define (repeat x l)
+  (cond ((= l 0) '())
+        (else (cons x (repeat x (- l 1))))))
+
+(define (make-multi-vector sizes . xs)
+  (if (null? xs)
+      (list->vector (repeat 0 (apply * sizes)))
+      (list->vector (repeat (car xs) (apply * sizes)))))
+
+(define (multi-vector-ref m indices)
+  (define num (+ (apply * indices) 1))
+  (vector-ref m num))
+
+(define (multi-vector-set! m indices x)
+   (define num (+ (apply * indices) 1))
+   (vector-set! m num x))
+  
+
+
+(define m (make-multi-vector '(2 2 2) 1))
+(make-multi-vector '(2 2 2) 3)
+(vector-ref #(1 2 3) 2)
+(multi-vector-set! m '(0 0 0) 9)
+(multi-vector-ref m '(0 0 0))

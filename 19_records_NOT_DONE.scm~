@@ -1,0 +1,10 @@
+;(define-struct pos (row col))
+;конструктора гет сет предикат
+
+(define-syntax define-struct
+  (syntax-rules ()
+    ((_ name args)
+       (define (func x) x))))
+
+(define-struct pos (row col))
+(func 3)
